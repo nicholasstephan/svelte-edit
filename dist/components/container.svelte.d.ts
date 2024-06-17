@@ -6,8 +6,6 @@ export default class Container extends SvelteComponent<{
     value?: any[];
     editable?: boolean;
 }, {
-    change: CustomEvent<any>;
-} & {
     [evt: string]: CustomEvent<any>;
 }, {}> {
 }
@@ -22,8 +20,6 @@ declare const __propDef: {
         editable?: boolean;
     };
     events: {
-        change: CustomEvent<any>;
-    } & {
         [evt: string]: CustomEvent<any>;
     };
     slots: {};

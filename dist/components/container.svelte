@@ -16,7 +16,7 @@
 </script>
 
 {#if editable}
-  <Edit {blocks} bind:value={value} on:change/>
+  <Edit {blocks} bind:value={value}/>
 {:else}
   <Display {blocks} {value}/>
 {/if}

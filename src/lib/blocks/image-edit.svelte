@@ -52,6 +52,7 @@
 
   button {
     flex: 1;
+    height: 120px;
     border: 2px solid var(--accent-light, #f0f0f0);
     border-radius: 8px;
     background: none;

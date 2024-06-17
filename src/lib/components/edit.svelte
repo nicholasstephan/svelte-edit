@@ -1,9 +1,6 @@
 <script>
 
-	import { fly, scale } from 'svelte/transition';
-	import { createEventDispatcher } from 'svelte';
-
-	const dispatch = createEventDispatcher();
+	import { fly } from 'svelte/transition';
 
 	export let blocks = [];
 	export let value = [];
@@ -119,8 +116,6 @@
 		window.addEventListener('pointerup', dragEnd);
 		window.addEventListener('pointermove', dragMove);
 	};
-
-	$: console.log('value', value);
 </script>
 
 <article bind:this={article} class:editable={isEditing === false}>
