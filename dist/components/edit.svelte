@@ -5,6 +5,9 @@
 	export let blocks = [];
 	export let value = [];
 
+	$: console.log('value', value);
+	$: console.log('blocks', blocks);
+
 	let article = null;
 	let isEditing = false;
 	let addMenuWidth = 0;
