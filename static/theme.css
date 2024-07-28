@@ -1,0 +1,26 @@
+:root {
+  --se-background:  #eeeeee;
+  --se-dark:  #424242;
+  --se-light:  #ffffff;
+  --se-accent:  #aaaaaa;
+}
+
+
+
+/*************************************/
+/* Cards                             */
+/*************************************/
+
+.se-card {
+  border-radius: 8px;
+  background: #eee;
+  overflow: hidden;
+}
+
+.se-card__header img {
+  object-fit: cover;
+}
+
+.se-card__body {
+  text-align: center;
+}

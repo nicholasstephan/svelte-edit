@@ -4,16 +4,40 @@
 npm run dev
 ```
 
+
+
 ## CSS Variables
 
 | Variable          | Default 
 | ---               | ---
-| --se-dark         | #424242
 | --se-accent       | #aaaaaa
-| --se-light        | #f0f0f0
+| --se-background   | #eeeeee
+| --se-dark         | #424242
+| --se-light        | #ffffff
+
 
 
 ## Blocks
+
+
+### Card
+
+#### Attributes
+
+| Attribute   | Description | Type    | Default
+| ---         | ---         | ---     | ---
+| image       | Image       | Image   | null
+| body        | Body        | String  | ""
+
+#### CSS Classes
+
+| Variable          | Description 
+| ---               | ---
+| .se-card          | Card
+| .se-card__image   | Card image  
+| .se-card__body    | Card body  
+
+
 
 ### Image
 
@@ -26,6 +50,18 @@ Back-end should handle the file upload and set the url.
 | file      | Image file  | File    | ""
 
 
+### Image Grid
+
+An image grid where value is an array of file objects. 
+
+#### CSS Classes
+
+| Variable          | Description 
+| ---               | ---
+| .se-image-grid    | Image grid
+| .se-image-grid__image | Image grid image
+
+
 ### Link
 
 A link. 
@@ -36,10 +72,13 @@ A link.
 | image       | url         | String  | null
 | title       | meta title  | String  | ""
 | description | meta desc   | String  | ""
- 
+
+
+
 ### Paragraph
 
 HTML text.
+
 
 ### Title
 

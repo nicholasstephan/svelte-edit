@@ -1,29 +1,40 @@
 <script>
-	import { writable } from 'svelte/store';
-	import Article, { blocks } from '$lib/index.js';
+	import Page from '$lib/index.js';
+	import blocks from '$lib/blocks/index.js';
 
 	let value = [
 		{
-			id: 'paragraph',
-			value:
-				'0 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur dapibus magna sed massa accumsan, sit amet dictum eros vestibulum. Donec ut tortor consectetur, fermentum odio vel, sagittis nisl. Maecenas eget ullamcorper libero. Curabitur turpis erat, consequat in aliquet eu, malesuada quis nibh. Nulla quis turpis leo. Curabitur nisi augue, porttitor a malesuada vitae, faucibus ut ipsum. Aliquam lobortis, eros sit amet dictum dapibus, massa quam feugiat neque, aliquam sollicitudin dolor felis ornare leo. Suspendisse potenti.'
+			id: 'title',
+			value: {
+				text: 'Svelte Edit',
+				level: 'h1'
+			}
 		},
 		{
 			id: 'paragraph',
-			value:
-				'1 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur dapibus magna sed massa accumsan, sit amet dictum eros vestibulum. Donec ut tortor consectetur, fermentum odio vel, sagittis nisl. Maecenas eget ullamcorper libero. Curabitur turpis erat, consequat in aliquet eu, malesuada quis nibh. Nulla quis turpis leo. Curabitur nisi augue, porttitor a malesuada vitae, faucibus ut ipsum. Aliquam lobortis, eros sit amet dictum dapibus, massa quam feugiat neque, aliquam sollicitudin dolor felis ornare leo. Suspendisse potenti.'
-		},
-		{
-			id: 'paragraph',
-			value:
-				'2 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur dapibus magna sed massa accumsan, sit amet dictum eros vestibulum. Donec ut tortor consectetur, fermentum odio vel, sagittis nisl. Maecenas eget ullamcorper libero. Curabitur turpis erat, consequat in aliquet eu, malesuada quis nibh. Nulla quis turpis leo. Curabitur nisi augue, porttitor a malesuada vitae, faucibus ut ipsum. Aliquam lobortis, eros sit amet dictum dapibus, massa quam feugiat neque, aliquam sollicitudin dolor felis ornare leo. Suspendisse potenti.'
-		},
-		{
-			id: 'paragraph',
-			value:
-				'3 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur dapibus magna sed massa accumsan, sit amet dictum eros vestibulum. Donec ut tortor consectetur, fermentum odio vel, sagittis nisl. Maecenas eget ullamcorper libero. Curabitur turpis erat, consequat in aliquet eu, malesuada quis nibh. Nulla quis turpis leo. Curabitur nisi augue, porttitor a malesuada vitae, faucibus ut ipsum. Aliquam lobortis, eros sit amet dictum dapibus, massa quam feugiat neque, aliquam sollicitudin dolor felis ornare leo. Suspendisse potenti.'
+			value: 'To edit any content block, just move your mouse over it and click the edit icon to make changes. Adding new blocks is super easy—simply click the plus icons above or below the current blocks to insert new ones. If you want to rearrange the blocks, grab the handle on the left and drag the block to your desired spot. This makes organizing your content a breeze. With these simple, intuitive controls, updating and customizing your content is quick and effortless, ensuring a smooth and enjoyable editing experience for everyone.<br>'
 		}
 	];
+
+	const handleChange = e => {
+		value = e.detail;
+	};
 </script>
 
-<Article {blocks} bind:value={value} editable={true} />
+<main>
+	<Page {blocks} bind:value={value} editable={true}/>
+</main>
+
+<style>
+
+	:global(html),
+	:global(body) {
+		padding: 0;
+		margin: 0;
+	}
+	
+	main {
+		max-width: 1200px;
+		margin: 16px auto;
+	}
+</style>
