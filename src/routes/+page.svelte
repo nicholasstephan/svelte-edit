@@ -37,4 +37,5 @@
 		max-width: 1200px;
 		margin: 16px auto;
 	}
+	
 </style>
