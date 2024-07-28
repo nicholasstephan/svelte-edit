@@ -151,7 +151,7 @@
 	<article bind:this={article} class:se-dragging={isDragging}>
 		{#each Object.keys(val) as key, i}
 
-			{@const block = blocks.find((b) => b.id === val[key].id)}
+			{@const block = blocks.find((b) => b?.id === val[key]?.id)}
 			{@const component = isEditing === i ? block?.edit : block?.display}
 
 			{#if component}
