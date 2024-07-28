@@ -3,8 +3,6 @@
   import Card from '../card/form.svelte';
 
   const ADD_CARD = "__add_card__";
-  const NEXT = "next";
-  const PREV = "prev";
 
   export let value;
 
@@ -18,12 +16,10 @@
   $: display = [...(value || []), ADD_CARD];
   
   const next = () => {
-    console.log('next');
     screen = screen == count ? 0 : screen + 1;
   };
 
   const prev = () => {
-    console.log('prev');
     screen = screen == 0 ? count : screen - 1;
   };
 
@@ -40,10 +36,6 @@
   const remove = (item) => () => {
     value = value.filter((i) => i != item);
   };
-
-  $: console.log('len', display.length)
-  $: console.log('display', display);
-
 
 </script>
 
