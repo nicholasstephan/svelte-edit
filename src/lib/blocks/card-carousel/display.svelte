@@ -88,7 +88,7 @@
   .se-card-carousel__prev svg, 
   .se-card-carousel__next svg {
     width: 40px;
-    fill: var(--se-dark, #424242);
+    fill: var(--se-forground, #424242);
     pointer-events: none;
   }
 

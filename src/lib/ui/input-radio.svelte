@@ -18,8 +18,8 @@
 
   button {
     padding: 8px 16px;
-    border: 1px solid var(--accent, #aaaaaa);
-    background: var(--accent-light, #f0f0f0);
+    border: 1px solid var(--se-accent, #aaaaaa);
+    background:  var(--se-background, #eeeeee);
     cursor: pointer;
   }
 
@@ -33,7 +33,7 @@
 
   button.se-is-active {
     background: var(--accent, #aaaaaa);
-    color: var(--accent-light, #f0f0f0);
+    color: var(--light, #ffffff);
   }
 
   button + button {

@@ -103,7 +103,7 @@
   .se-card-carousel__prev svg, 
   .se-card-carousel__next svg {
     width: 40px;
-    fill: var(--se-dark, #424242);
+    fill: var(--se-forground, #424242);
     pointer-events: none;
   }
 
@@ -117,8 +117,13 @@
 
   .se-card-carousel__item {
     position: relative;
+    z-index: 10;
     max-width: 280px;
     scroll-snap-align: center;
+  }
+
+  .se-card-carousel__item:has(:focus) {
+    z-index: 100;
   }
 
   .se-card-carousel__spacer {
@@ -147,40 +152,6 @@
     .se-card-carousel__item {
       width: 240px;
     }
-
-    .spacer {
-      display: block;
-    }
-  }
-
-  @keyframes slide-in-next {
-    from {
-      transform: translateX(40px);
-      opacity: 0;
-    }
-    to {
-      transform: translateX(0px);
-      opacity: 1;
-    }
-  }
-
-  @keyframes slide-in-prev {
-    from {
-      transform: translateX(-40px);
-      opacity: 0;
-    }
-    to {
-      transform: translateX(0px);
-      opacity: 1;
-    }
-  }
-
-  .anim-next.active {
-    animation: slide-in-next .5s;
-  }
-
-  .anim-prev.active {
-    animation: slide-in-prev .5s;
   }
 
   .se-card-carousel__add {
@@ -200,7 +171,7 @@
 
   .se-card-carousel__add svg {
     width: 40px;
-    fill: color-mix(in srgb, var(--se-background, #eee) 80%, var(--se-dark, #424242) 20%);
+    fill: color-mix(in srgb, var(--se-background, #eee) 80%, var(--se-forground, #424242) 20%);
     pointer-events: none;
   }
 
@@ -229,7 +200,7 @@
 
   .se-card-carousel__item__remove svg {
     height: 16px;
-    fill: var(--se-dark, #424242);
+    fill: var(--se-forground, #424242);
   }
 
 </style>

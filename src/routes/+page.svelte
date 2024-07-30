@@ -19,6 +19,8 @@
 	const handleChange = e => {
 		value = e.detail;
 	};
+	
+	$: console.log(value);
 </script>
 
 <main>
@@ -31,6 +33,8 @@
 	:global(body) {
 		padding: 0;
 		margin: 0;
+		background: black;
+		color: white;
 	}
 	
 	main {

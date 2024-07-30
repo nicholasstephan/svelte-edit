@@ -14,7 +14,7 @@
 	// If there's only one block option, automatically add it
 	// and don't give the user the ability to add more.
 	$: if(val && Object.keys(val)?.length == 0 && blocks?.length == 1) {
-		val = [{ id: blocks[0].id, val: null }];
+		val = [{ id: blocks[0].id, value: null }];
 	}
 
 	let article = null;
@@ -145,6 +145,8 @@
 		window.addEventListener("pointermove", dragMove);
 	};
 
+	$: console.log(val);
+
 </script>
 
 {#if Object.keys(val).length}
@@ -152,7 +154,7 @@
 		{#each Object.keys(val) as key, i}
 
 			{@const block = blocks.find((b) => b?.id === val[key]?.id)}
-			{@const component = isEditing === i ? block?.edit : block?.display}
+			{@const component = isEditing === i ? block?.edit : block?.preview || block?.display}
 
 			{#if component}
 				<div
@@ -263,6 +265,7 @@
 
 	.se-block {
 		position: relative;
+		z-index: 10;
 		display: flex;
 		flex-direction: column;
 		align-items: stretch;
@@ -279,8 +282,8 @@
 		color: var(--se-accent, #aaaaaa);
 		fill: var(--se-accent, #aaaaaa);
 		text-align: center;
-		background: var(--se-light, #ffffff);
-		box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+		background: color-mix(in srgb, var(--se-background, #eee) 80%, var(--se-forground, #424242) 20%);
+		box-shadow: 0 1px 4px color-mix(in srgb, var(--se-background, #eee) 60%, var(--se-forground, #424242) 40%);
 		border-radius: 16px;
 		cursor: pointer;
 	}
@@ -301,12 +304,18 @@
 		}
 	}
 	
+	.se-editing.se-block {
+		z-index: 100;
+	}
+
 	.se-editing.se-block:before {
 		content: "";
 		position: absolute;
+		z-index: -1;
 		inset: -8px -8px -8px -8px;
 		outline: 2px solid var(--se-accent, #aaaaaa);
 		box-shadow: 0 0 16px var(--se-accent, #aaaaaa);
+		background: var(--se-background, #eeeeee);
 		pointer-events: none;
 	}
 
@@ -336,10 +345,10 @@
 
 		color: var(--se-accent, #aaaaaa);
 		fill: var(--se-accent, #aaaaaa);
-		box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+		box-shadow: 0 2px 4px color-mix(in srgb, var(--se-background, #eee) 80%, var(--se-forground, #424242) 20%);
 
 		border-radius: 8px;
-		background: var(--se-light, #ffffff);
+		background: var(--se-background, #eeeeee);
 		cursor: pointer;
 	}
 
@@ -497,8 +506,8 @@
 	}
 
 	.se-remove button {
-		background: var(--se-danger-light, #feded7);
-		fill: var(--se-danger, #fa5938);
+		background: var(--se-accent, #aaa);
+		fill: var(--se-forground, #fff);
 	}
 
 	@media (hover: hover) {
@@ -509,9 +518,9 @@
 		}
 
 		.se-remove button:hover {
-			background: var(--se-danger-light, #feded7);
-			fill: var(--se-danger, #fa5938);
-			box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+			background: var(--se-accent, #aaa);
+			fill: var(--se-forground, #ffff);
+			box-shadow: 0 2px 4px color-mix(in srgb, var(--se-background, #eee) 80%, var(--se-forground, #424242) 20%);
 		}
 	}
 
@@ -538,7 +547,7 @@
 		flex-direction: column;
 		border-radius: 8px;
 		background: var(--se-background, #eeeeee);
-		box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+		box-shadow: 0 2px 8px color-mix(in srgb, var(--se-background, #eee) 80%, var(--se-forground, #424242) 20%);
 		transform: translateX(-50%);
 		overflow: hidden;
 	}
@@ -553,25 +562,25 @@
 		border: none;
 		background: none;
 		text-align: left;
-		color: var(--se-dark, #424242);
-		fill: var(--se-dark, #424242);
+		color: var(--se-forground, #424242);
+		fill: var(--se-forground, #424242);
 		cursor: pointer;
 		white-space: nowrap;
 	}
 
 	.se-add-menu button .se-icon {
-		width: var(--normal-font-size, 16px);
-		height: var(--normal-font-size, 16px);
-		font-size: var(--normal-font-size, 16px);
+		width: 1rem;
+		height: 1rem;
+		font-size: 1rem;
 	}
 	
 	.se-add-menu button .se-name {
-		font-size: var(--small-font-size);
+		font-size: .8rem;
 	}
 
 	@media (hover: hover) {
 		.se-add-menu button:hover {
-			background-color: var(--se-light, #ffffff);
+			background-color: var(--se-background, #eeeeee);
 		}
 	}
 </style>

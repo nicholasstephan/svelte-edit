@@ -1,8 +1,7 @@
 :root {
-  --se-background:  #eeeeee;
-  --se-dark:  #424242;
-  --se-light:  #ffffff;
-  --se-accent:  #aaaaaa;
+  --se-background:  #000000;
+  --se-forground:  #ffffff;
+  --se-accent:  red;
 }
 
 
@@ -14,7 +13,6 @@
 .se-card {
   border-radius: 8px;
   background: #eee;
-  overflow: hidden;
 }
 
 .se-card__header img {

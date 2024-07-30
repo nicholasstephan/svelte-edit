@@ -62,7 +62,7 @@
 		color: var(--se-accent, #aaaaaa);
 		fill: var(--se-accent, #aaaaaa);
 		text-align: center;
-		background: var(--se-light, #ffffff);
+		background: var(--se-background, #eeeeee);
 		box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 		border-radius: 16px;
 		cursor: pointer;

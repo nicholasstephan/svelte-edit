@@ -10,10 +10,9 @@ npm run dev
 
 | Variable          | Default 
 | ---               | ---
-| --se-accent       | #aaaaaa
 | --se-background   | #eeeeee
-| --se-dark         | #424242
-| --se-light        | #ffffff
+| --se-forground    | #424242
+| --se-accent       | #aaaaaa
 
 
 
