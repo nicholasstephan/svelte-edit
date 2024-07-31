@@ -97,6 +97,7 @@
     display: flex;
     flex-direction: row;
     align-items: flex-start;
+    gap: 1rem;
   }
 
   .se-card-carousel__screen {
@@ -127,6 +128,7 @@
 
     .se-card-carousel__screens {
       display: grid;
+      gap: none;
     }
 
     .se-card-carousel__screen {
@@ -151,52 +153,52 @@
     .se-card-carousel__spacer {
       display: block;
     }
-  }
+    
 
-  @keyframes se-card-carousel--next {
-    0% {
-      transform: translateX(2rem);
+    @keyframes se-card-carousel--next {
+      0% {
+        transform: translateX(2rem);
+        opacity: 0;
+      }
+      50% {
+        opacity: 1;
+      }
+      100% {
+        transform: translateX(0rem);
+      }
+    }
+
+    @keyframes se-card-carousel--prev {
+      0% {
+        transform: translateX(-2rem);
+        opacity: 0;
+      }
+      50% {
+        opacity: 1;
+      }
+      100% {
+        transform: translateX(0rem);
+      }
+    }
+
+    .se-card-carousel__screen:not(.se-card-carousel__screen--active) {
       opacity: 0;
     }
-    50% {
+
+    .se-card-carousel__screen--next.se-card-carousel__screen--active {
+      animation: se-card-carousel--next 400ms ease-in-out;
+    }
+
+    .se-card-carousel__screen--prev.se-card-carousel__screen--active {
+      animation: se-card-carousel--prev 400ms ease-in-out;
+    }
+
+    .se-card-carousel__screen {
+      transform: translateX(0px);
       opacity: 1;
-    }
-    100% {
-      transform: translateX(0rem);
+      transition: all 200ms ease-in-out;
     }
   }
-
-  @keyframes se-card-carousel--prev {
-    0% {
-      transform: translateX(-2rem);
-      opacity: 0;
-    }
-    50% {
-      opacity: 1;
-    }
-    100% {
-      transform: translateX(0rem);
-    }
-  }
-
-  .se-card-carousel__screen:not(.se-card-carousel__screen--active) {
-    opacity: 0;
-  }
-
-  .se-card-carousel__screen--next.se-card-carousel__screen--active {
-    animation: se-card-carousel--next 400ms ease-in-out;
-  }
-
-  .se-card-carousel__screen--prev.se-card-carousel__screen--active {
-    animation: se-card-carousel--prev 400ms ease-in-out;
-  }
-
-  .se-card-carousel__screen {
-    transform: translateX(0px);
-    opacity: 1;
-    transition: all 200ms ease-in-out;
-  }
-
   
 
 
