@@ -13,6 +13,7 @@
 .se-card {
   border-radius: 8px;
   background: #eee;
+  color: #424242;
 }
 
 .se-card__header img {

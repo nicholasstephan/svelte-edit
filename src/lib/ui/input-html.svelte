@@ -371,18 +371,20 @@
 		height: 32px;
 		text-align: center;
 		color: var(--se-forground, #424242);
+		fill: var(--se-forground, #424242);
 		background-color: var(--se-background, #eeeeee);
 		cursor: pointer;
 		box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
 	}
 
 	.se-html-input__action:hover {
-		color: var(--se-forground, #424242);
+		background-color: color-mix(in srgb, var(--se-background, #eee) 80%, var(--se-forground, #424242) 20%);
 	}
 
 	.se-html-input__action.active {
-		background-color: var(--se-forground, #424242);
+		background-color: color-mix(in srgb, var(--se-background, #eee) 80%, var(--se-forground, #424242) 20%);
 		color: var(--se-accent, #aaa);
+		fill: var(--se-accent, #aaa);
 	}
 
 	.se-html-input__action:first-child {
@@ -416,7 +418,6 @@
 	}
 
 	.se-html-input__content :global(a) {
-		color: var(--se-accent, #aaaaaa);
 		text-decoration: none;
 		pointer-events: none;
 	}

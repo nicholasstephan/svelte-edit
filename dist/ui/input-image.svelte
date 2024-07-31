@@ -48,7 +48,7 @@
     height: 100%;
     min-height: 14px;
     padding: 0;
-    border: 1px solid color-mix(in srgb, var(--se-background, #eee) 80%, var(--se-dark, #424242) 20%);
+    border: 1px solid color-mix(in srgb, var(--se-background, #eee) 80%, var(--se-forground, #424242) 20%);
     background: none;
     color: var(--se-accent, #aaaaaa);
     cursor: pointer;
@@ -70,7 +70,7 @@
   svg {
     max-width: 64px;
     max-height: 64px;
-    fill: color-mix(in srgb, var(--se-background, #eee) 80%, var(--se-dark, #424242) 20%);
+    fill: color-mix(in srgb, var(--se-background, #eee) 80%, var(--se-forground, #424242) 20%);
   }
 
   input {

@@ -6,7 +6,7 @@
 	export let value = '';
 	export let focused = false;
 	export let disabled = false;
-	export let placeholder = "Input Content...";
+	export let placeholder = 'Input Content...';
 
 	export let actions = ['heading', 'bold', 'italic', 'underline', 'list', 'link'];
 	export let classes = [];
@@ -25,7 +25,6 @@
 
 	$: value = value || '';
 	$: isEmpty = !value.trim();
-
 
 	// When a user pastes content into a text area, we extract just
 	// the plain text. Stops all the word nonsense from coming through.
@@ -205,7 +204,7 @@
 	{#if focused && actionInset}
 		<div
 			class="se-html-input__actions"
-			transition:fly|local={{ y:8, duration:200 }}
+			transition:fly|local={{ y: 8, duration: 200 }}
 			on:mousedown={(e) => e.preventDefault()}
 			role="button"
 			tabindex="0"
@@ -333,19 +332,14 @@
 	.se-html-input {
 		position: relative;
 		padding: 0;
-		border: 1px solid color-mix(in srgb, var(--se-background, #eee) 80%, var(--se-dark, #424242) 20%);
+		border: 1px solid
+			color-mix(in srgb, var(--se-background, #eee) 80%, var(--se-forground, #424242) 20%);
 		margin: 0;
-		transition: box-shadow 0.2s ease-in-out;
-	}
-
-	.se-html-input:focus,
-	.se-html-input:has(:focus) {
-		box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.2);
 	}
 
 	.se-html-input__content {
 		box-sizing: border-box;
-		min-height: 24px;
+		min-height: 48px;
 		padding: calc(0.5rem - 1px); /* Because we already have a 1px border */
 		font-family: inherit;
 		font-size: inherit;
@@ -369,26 +363,28 @@
 		display: inline-block;
 		z-index: 200;
 
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    
+		display: flex;
+		align-items: center;
+		justify-content: center;
+
 		width: 32px;
-    height: 32px;
+		height: 32px;
 		text-align: center;
-		color: var(--se-dark, #424242);
+		color: var(--se-forground, #424242);
+		fill: var(--se-forground, #424242);
 		background-color: var(--se-background, #eeeeee);
 		cursor: pointer;
 		box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
 	}
 
 	.se-html-input__action:hover {
-		color: var(--se-dark, #424242);
+		background-color: color-mix(in srgb, var(--se-background, #eee) 80%, var(--se-forground, #424242) 20%);
 	}
 
 	.se-html-input__action.active {
-		background-color: var(--se-dark, #424242);
+		background-color: color-mix(in srgb, var(--se-background, #eee) 80%, var(--se-forground, #424242) 20%);
 		color: var(--se-accent, #aaa);
+		fill: var(--se-accent, #aaa);
 	}
 
 	.se-html-input__action:first-child {
@@ -422,7 +418,6 @@
 	}
 
 	.se-html-input__content :global(a) {
-		color: var(--se-accent, #aaaaaa);
 		text-decoration: none;
 		pointer-events: none;
 	}

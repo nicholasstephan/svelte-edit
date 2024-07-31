@@ -145,8 +145,6 @@
 		window.addEventListener("pointermove", dragMove);
 	};
 
-	$: console.log(val);
-
 </script>
 
 {#if Object.keys(val).length}
@@ -314,8 +312,6 @@
 		z-index: -1;
 		inset: -8px -8px -8px -8px;
 		outline: 2px solid var(--se-accent, #aaaaaa);
-		box-shadow: 0 0 16px var(--se-accent, #aaaaaa);
-		background: var(--se-background, #eeeeee);
 		pointer-events: none;
 	}
 

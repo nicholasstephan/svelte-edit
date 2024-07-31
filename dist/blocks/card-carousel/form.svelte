@@ -43,7 +43,7 @@
 
 <div class="se-card-carousel">
   <button class="se-card-carousel__prev" on:click={prev}>
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--!Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path d="M512 256A256 256 0 1 0 0 256a256 256 0 1 0 512 0zM116.7 244.7l112-112c4.6-4.6 11.5-5.9 17.4-3.5s9.9 8.3 9.9 14.8l0 64 96 0c17.7 0 32 14.3 32 32l0 32c0 17.7-14.3 32-32 32l-96 0 0 64c0 6.5-3.9 12.3-9.9 14.8s-12.9 1.1-17.4-3.5l-112-112c-6.2-6.2-6.2-16.4 0-22.6z"/></svg>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--!Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path d="M512 256A256 256 0 1 0 0 256a256 256 0 1 0 512 0zM215 127c9.4-9.4 24.6-9.4 33.9 0s9.4 24.6 0 33.9l-71 71L392 232c13.3 0 24 10.7 24 24s-10.7 24-24 24l-214.1 0 71 71c9.4 9.4 9.4 24.6 0 33.9s-24.6 9.4-33.9 0L103 273c-9.4-9.4-9.4-24.6 0-33.9L215 127z"/></svg>
   </button>
   {#each Array(Math.ceil(display?.length / 4)) as _, i}
     <div class="se-card-carousel__screen" class:se-card-carousel__screen--active={i == screen}>
@@ -71,7 +71,7 @@
     </div>
   {/each}
   <button class="se-card-carousel__next" on:click={next}>
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--!Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path d="M0 256a256 256 0 1 0 512 0A256 256 0 1 0 0 256zm395.3 11.3l-112 112c-4.6 4.6-11.5 5.9-17.4 3.5s-9.9-8.3-9.9-14.8l0-64-96 0c-17.7 0-32-14.3-32-32l0-32c0-17.7 14.3-32 32-32l96 0 0-64c0-6.5 3.9-12.3 9.9-14.8s12.9-1.1 17.4 3.5l112 112c6.2 6.2 6.2 16.4 0 22.6z"/></svg>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--!Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path d="M0 256a256 256 0 1 0 512 0A256 256 0 1 0 0 256zM297 385c-9.4 9.4-24.6 9.4-33.9 0s-9.4-24.6 0-33.9l71-71L120 280c-13.3 0-24-10.7-24-24s10.7-24 24-24l214.1 0-71-71c-9.4-9.4-9.4-24.6 0-33.9s24.6-9.4 33.9 0L409 239c9.4 9.4 9.4 24.6 0 33.9L297 385z"/></svg>
   </button>
 </div>
 
@@ -103,7 +103,7 @@
   .se-card-carousel__prev svg, 
   .se-card-carousel__next svg {
     width: 40px;
-    fill: var(--se-dark, #424242);
+    fill: var(--se-forground, #424242);
     pointer-events: none;
   }
 
@@ -117,8 +117,13 @@
 
   .se-card-carousel__item {
     position: relative;
+    z-index: 10;
     max-width: 280px;
     scroll-snap-align: center;
+  }
+
+  .se-card-carousel__item:has(:focus) {
+    z-index: 100;
   }
 
   .se-card-carousel__spacer {
@@ -147,40 +152,6 @@
     .se-card-carousel__item {
       width: 240px;
     }
-
-    .spacer {
-      display: block;
-    }
-  }
-
-  @keyframes slide-in-next {
-    from {
-      transform: translateX(40px);
-      opacity: 0;
-    }
-    to {
-      transform: translateX(0px);
-      opacity: 1;
-    }
-  }
-
-  @keyframes slide-in-prev {
-    from {
-      transform: translateX(-40px);
-      opacity: 0;
-    }
-    to {
-      transform: translateX(0px);
-      opacity: 1;
-    }
-  }
-
-  .anim-next.active {
-    animation: slide-in-next .5s;
-  }
-
-  .anim-prev.active {
-    animation: slide-in-prev .5s;
   }
 
   .se-card-carousel__add {
@@ -200,7 +171,7 @@
 
   .se-card-carousel__add svg {
     width: 40px;
-    fill: color-mix(in srgb, var(--se-background, #eee) 80%, var(--se-dark, #424242) 20%);
+    fill: color-mix(in srgb, var(--se-background, #eee) 80%, var(--se-forground, #424242) 20%);
     pointer-events: none;
   }
 
@@ -229,7 +200,7 @@
 
   .se-card-carousel__item__remove svg {
     height: 16px;
-    fill: var(--se-dark, #424242);
+    fill: var(--se-forground, #424242);
   }
 
 </style>
