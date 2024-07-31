@@ -108,11 +108,6 @@
 				child.style.transform = null;
 			}
 
-			targetBlock.style.transform = null;
-
-			dragStart = null;
-			targetBlock = null;
-
 			window.removeEventListener("pointerup", dragEnd);
 			window.removeEventListener("pointermove", dragMove);
 

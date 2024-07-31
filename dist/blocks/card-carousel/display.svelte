@@ -179,11 +179,7 @@
     }
   }
 
-  .se-card-carousel__screen--next:not(.se-card-carousel__screen--active) {
-    opacity: 0;
-  }
-  
-  .se-card-carousel__screen--prev:not(.se-card-carousel__screen--active) {
+  .se-card-carousel__screen:not(.se-card-carousel__screen--active) {
     opacity: 0;
   }
 

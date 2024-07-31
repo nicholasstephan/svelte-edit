@@ -2,7 +2,7 @@
 /** @typedef {typeof __propDef.events}  FormEvents */
 /** @typedef {typeof __propDef.slots}  FormSlots */
 export default class Form extends SvelteComponent<{
-    value?: any;
+    value?: any[];
 }, {
     [evt: string]: CustomEvent<any>;
 }, {}> {
@@ -13,7 +13,7 @@ export type FormSlots = typeof __propDef.slots;
 import { SvelteComponent } from "svelte";
 declare const __propDef: {
     props: {
-        value?: any;
+        value?: any[];
     };
     events: {
         [evt: string]: CustomEvent<any>;
