@@ -8,10 +8,7 @@
 	let container;
 
 	const add = () => {
-		value = [
-			...(value || []),
-			{ ...newImage, id: Date.now() } // adding id for dnd
-		];
+		value = [...(value || []), newImage];
 		newImage = null;
 	};
 
@@ -22,10 +19,10 @@
 	let isDragging = false;
 	let isDragAnimating = false;
 
-	const drag = (i) => (e) => {
+	const drag = (i) => () => {
 		isDragging = true;
 
-		const dragEnd = (e) => {
+		const dragEnd = () => {
 			window.removeEventListener('pointerup', dragEnd);
 			window.removeEventListener('pointermove', dragMove);
 			isDragging = false;
@@ -73,7 +70,7 @@
 </script>
 
 <div class="se-image-grid" class:se--dragging={isDragging} bind:this={container}>
-	{#each value || [] as image, i (image.id)}
+	{#each value || [] as image, i (image.url || image.file?.name)}
 		<div class="se-image-grid__image" animate:flip={{duration:200}}>
 			<InputImage bind:value={image} />
 			<nav>
