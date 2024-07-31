@@ -1,9 +1,10 @@
 <script>
+	import { flip } from 'svelte/animate';
+
 	import InputImage from '../../ui/input-image.svelte';
 
 	export let value = [];
 	let newImage = null;
-
 	let container;
 
 	const add = () => {
@@ -18,67 +19,73 @@
 		value = value.filter((i) => i !== image);
 	};
 
-  // let isDragging = false;
-	// const drag = (i) => (e) => {
-	// 	console.log('dragging');
+	let isDragging = false;
+	let isDragAnimating = false;
 
-  //   isDragging = i;
+	const drag = (i) => (e) => {
+		isDragging = true;
 
-	// 	let startDragX = e.clientX;
-	// 	let startDragY = e.clientY;
-	// 	let targetBlock = container.children[i];
+		const dragEnd = (e) => {
+			window.removeEventListener('pointerup', dragEnd);
+			window.removeEventListener('pointermove', dragMove);
+			isDragging = false;
+		};
 
-	// 	const dragEnd = (e) => {
-	// 		for (let child of container.children) {
-  //       child.style.transform = null;
-	// 		}
-  //     isDragging = false;
-	// 		window.removeEventListener('pointerup', dragEnd);
-	// 		window.removeEventListener('pointermove', dragMove);
-	// 	};
+		const dragMove = (e) => {
+			if(isDragAnimating) {
+				return;
+			}
+      
+      for (let [j, child] of Object.entries(container.children)) {
+        if(j == i) continue;
 
-	// 	const dragMove = (e) => {
-  //     const dx = e.clientX - startDragX;
-	// 		const dy = e.clientY - startDragY;
-			
-  //     targetBlock.style.transform = `translate(${dx}px, ${dy}px)`;
+        const rect = child.getBoundingClientRect();
 
-  //     for (let [j, child] of Object.entries(container.children)) {
-  //       if(j == i) continue;
+        if (
+          e.clientX > rect.left &&
+          e.clientX < (rect.left + rect.width) &&
+          e.clientY > rect.top &&
+          e.clientY < (rect.top + rect.height)
+        ) {
+					if(e.clientX < (rect.left + rect.width / 2)) {
+						let before = value[j];
+						let [item] = value.splice(i, 1);
+						let intoIndex = value.indexOf(before);
+						value = [...value.slice(0, intoIndex), item, ...value.slice(intoIndex)];
+						i = intoIndex;
+					} else {
+						let after = value[j];
+						let [item] = value.splice(i, 1);
+						let intoIndex = value.indexOf(after) + 1;
+						value = [...value.slice(0, intoIndex), item, ...value.slice(intoIndex)];
+						i = intoIndex;
+					}
+					isDragAnimating = true;
+					setTimeout(() => isDragAnimating = false, 200);
+        }
+      }
 
-  //       const rect = child.getBoundingClientRect();
+		};
 
-  //       if (
-  //         e.clientX > rect.left ||
-  //         e.clientX < rect.left + rect.width ||
-  //         e.clientY > rect.top ||
-  //         e.clientY < rect.top + rect.height
-  //       ) {
-	// 				console.log('swapping', i, j);
-	// 				let [item] = value.splice(i, 1);
-	// 				value = [...value.slice(0, j), item, ...value.slice(j)];
-  //       }
-  //     }
-
-	// 	};
-
-	// 	window.addEventListener('pointerup', dragEnd);
-	// 	window.addEventListener('pointermove', dragMove);
-	// };
+		window.addEventListener('pointerup', dragEnd);
+		window.addEventListener('pointermove', dragMove);
+	};
 </script>
 
-<div class="se-image-grid" bind:this={container}>
-	{#each value || [] as image, i}
-		<div class="se-image-grid__image">
+<div class="se-image-grid" class:se--dragging={isDragging} bind:this={container}>
+	{#each value || [] as image, i (image.id)}
+		<div class="se-image-grid__image" animate:flip={{duration:200}}>
 			<InputImage bind:value={image} />
 			<nav>
-				<!-- <button on:pointerdown={drag(i)}>
-					<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 512"
-						><path
-							d="M48 144a48 48 0 1 0 0-96 48 48 0 1 0 0 96zm0 160a48 48 0 1 0 0-96 48 48 0 1 0 0 96zM96 416A48 48 0 1 0 0 416a48 48 0 1 0 96 0zM208 144a48 48 0 1 0 0-96 48 48 0 1 0 0 96zm48 112a48 48 0 1 0 -96 0 48 48 0 1 0 96 0zM208 464a48 48 0 1 0 0-96 48 48 0 1 0 0 96z"
-						/></svg
-					>
-				</button> -->
+				{#if value.length > 1}
+					<button on:pointerdown={drag(i)} class="se-image-grid__drag-handle">
+						<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 512"
+							><path
+								d="M48 144a48 48 0 1 0 0-96 48 48 0 1 0 0 96zm0 160a48 48 0 1 0 0-96 48 48 0 1 0 0 96zM96 416A48 48 0 1 0 0 416a48 48 0 1 0 96 0zM208 144a48 48 0 1 0 0-96 48 48 0 1 0 0 96zm48 112a48 48 0 1 0 -96 0 48 48 0 1 0 96 0zM208 464a48 48 0 1 0 0-96 48 48 0 1 0 0 96z"
+							/></svg
+						>
+					</button>
+				{/if}
 				<button on:click={remove(image)}>
 					<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"
 						><path
@@ -98,6 +105,10 @@
 	.se-image-grid {
 		display: grid;
 		grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+	}
+
+	.se-image-grid.se--dragging {
+		cursor: grabbing;
 	}
 
 	.se-image-grid :global(img) {
@@ -139,5 +150,9 @@
 	.se-image-grid__image button svg {
 		height: 16px;
 		padding: 8px 0;
+	}
+
+	.se-image-grid__drag-handle {
+		cursor: grab;
 	}
 </style>

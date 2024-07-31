@@ -19,8 +19,7 @@
 	const handleChange = e => {
 		value = e.detail;
 	};
-	
-	$: console.log(value);
+
 </script>
 
 <main>
