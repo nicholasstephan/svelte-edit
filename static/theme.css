@@ -1,25 +1,7 @@
-:root {
-  --se-background:  #000000;
-  --se-forground:  #ffffff;
-  --se-accent:  red;
+h1 {
+  margin: 16px 0;
 }
 
-
-
-/*************************************/
-/* Cards                             */
-/*************************************/
-
-.se-card {
-  border-radius: 8px;
-  background: #eee;
-  color: #424242;
-}
-
-.se-card__header img {
-  object-fit: cover;
-}
-
-.se-card__body {
-  text-align: center;
+.se-block {
+  padding: 8px 0;
 }

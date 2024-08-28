@@ -1,12 +1,43 @@
-## Development
+# Svelte Edit
 
+An opinionated Svelte component library for composing websites from prebuild, editable, components. 
+
+
+
+## Initial Setup
+
+1. Create a [SvelteKit](https://kit.svelte.dev) project by running:
+
+```bash
+npm create svelte@latest my-app
 ```
-npm run dev
+
+Follow the instructions to create a new project.
+
+2. Install this library:
+
+```bash
+npm install https://github.com/nicholasstephan/svelte-edit.git
+```
+
+3. Look at `src/routes` for an example of how to create a catch-ll route for the editor.
+
+
+
+## Update
+
+To update the library, simply install the latest version using:
+
+```bash
+npm install https://github.com/nicholasstephan/svelte-edit.git
 ```
 
 
 
-## CSS Variables
+## Theme
+
+
+### CSS Variables
 
 | Variable          | Default 
 | ---               | ---
@@ -15,76 +46,29 @@ npm run dev
 | --se-accent       | #aaaaaa
 
 
+### Classes
 
-## Blocks
+#### `.se-block`
 
-
-### Card
-
-#### Attributes
-
-| Attribute   | Description | Type    | Default
-| ---         | ---         | ---     | ---
-| image       | Image       | Image   | null
-| body        | Body        | String  | ""
-
-#### CSS Classes
-
-| Variable          | Description 
-| ---               | ---
-| .se-card          | Card
-| .se-card__image   | Card image  
-| .se-card__body    | Card body  
+The `.se-block` container wraps each block. 
 
 
 
-### Image
+### Blocks
 
-An image. If a `url` is given, that is used. Will all back on `file`. 
-Back-end should handle the file upload and set the url.
+#### Paragraph
 
-| Attribute | Description | Type    | Default
-| ---       | ---         | ---     | ---
-| url       | Image url   | String  | null
-| file      | Image file  | File    | ""
+##### Classes
 
-
-### Image Grid
-
-An image grid where value is an array of file objects. 
-
-#### CSS Classes
-
-| Variable          | Description 
-| ---               | ---
-| .se-image-grid    | Image grid
-| .se-image-grid__image | Image grid image
+| Class           | Description
+| ---             | ---
+| .se-paragraph   | Paragraph text
 
 
-### Link
+#### Title
 
-A link. 
+##### Classes
 
-| Attribute   | Description | Type    | Default
-| ---         | ---         | ---     | ---
-| url         | url         | String  | null
-| image       | url         | String  | null
-| title       | meta title  | String  | ""
-| description | meta desc   | String  | ""
-
-
-
-### Paragraph
-
-HTML text.
-
-
-### Title
-
-A title with value: 
-
-| Attribute | Description | Type    | Default
-| ---       | ---         | ---     | ---
-| level     | Title level | String  | h1
-| text      | Title html  | String  | ""
-
+| Class           | Description
+| ---             | ---
+| .se-title       | Title text

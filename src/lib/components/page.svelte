@@ -4,12 +4,16 @@
 ```svelte
 <Page {blocks} bind:value={value} editable={true}/>
 ```
+
+TODO: 
+- [ ] Can we lazy load page-edit.svelte if editable is true?
+
 -->
 
 <script>
   import { createEventDispatcher } from 'svelte';
-  import Display from './page-display.svelte';
-  import Edit from './page-edit.svelte';
+  import Display from './display.svelte';
+  import Edit from './edit.svelte';
 
   const dispatch = createEventDispatcher();
 
@@ -18,11 +22,13 @@
   export let editable = false;
 
   // Emitting a change event, and updating the value.
-  // This should account for both bound and unbound values.
+  // This supports both bound and unbound values.
   const handleChange = e => {
     dispatch('change', e.detail);
     value = e.detail;
   };
+
+  $: console.log('value', value);
 </script>
 
 {#if editable}

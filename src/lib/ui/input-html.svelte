@@ -340,7 +340,7 @@
 	.se-html-input__content {
 		box-sizing: border-box;
 		min-height: 48px;
-		padding: calc(0.5rem - 1px); /* Because we already have a 1px border */
+		padding: 7px; /* Because we already have a 1px border */
 		font-family: inherit;
 		font-size: inherit;
 		line-height: inherit;
@@ -429,8 +429,8 @@
 
 	.se-html-input__placeholder {
 		position: absolute;
-		top: calc(0.5rem - 1px);
-		left: calc(0.5rem - 1px);
+		top: 7px;
+		left: 7px;
 		width: 100%;
 		pointer-events: none;
 		opacity: 0.5;
